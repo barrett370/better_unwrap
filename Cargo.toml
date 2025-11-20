@@ -2,12 +2,12 @@
 name = "better_unwrap"
 version = "0.1.0"
 edition = "2024"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Sam Barrett <barrett370@gmail.com>"]
 description = "A trait providing clearer alternatives to unwrap() methods: or_panic(), panic_or(), panic_or_else(), panic_or_default(), and panic_with()"
-license = "MIT OR Apache-2.0"  # Dual license is common, or use "MIT" or "Apache-2.0"
-repository = "https://github.com/yourusername/better_unwrap"  # Optional but recommended
+license = "MIT"
+repository = "https://github.com/barrett370/better_unwrap"  # Optional but recommended
 keywords = ["unwrap", "panic", "result", "option", "error-handling"]
-categories = ["error-handling", "no-std"]  # Optional: see https://crates.io/category_slugs
+categories = ["rust-patterns"] 
 readme = "README.md"
 
 [dependencies]
