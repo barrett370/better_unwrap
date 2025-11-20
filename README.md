@@ -11,6 +11,8 @@ The standard library's `unwrap()` method name doesn't clearly communicate that i
 - `panic_or_else()` instead of `unwrap_or_else()`
 - `panic_or_default()` instead of `unwrap_or_default()`
 - `panic_with()` instead of `expect()`
+- `or_panic_err()` instead of `unwrap_err()` (Result only)
+- `panic_err_with()` instead of `expect_err()` (Result only)
 
 ## Usage
 
@@ -32,17 +34,26 @@ let value: u32 = result.or_panic();
 // Instead of .unwrap_or(42)
 let value: u32 = result.panic_or(42);
 
-// Instead of .unwrap_or_else(|| compute())
-let value: u32 = result.panic_or_else(|| compute());
+// Instead of .unwrap_or_else(|err| compute(err))
+// For Result: closure receives the error value
+let value: u32 = result.panic_or_else(|err| compute(err));
+// For Option: closure takes no parameters
+let value: u32 = option.panic_or_else(|| compute());
 
 // Instead of .unwrap_or_default()
 let value: String = result.panic_or_default();
 
 // Instead of .expect("message")
 let value: u32 = result.panic_with("Custom error message");
+
+// Instead of .unwrap_err() (Result only - panics if Ok)
+let error: &str = result.or_panic_err();
+
+// Instead of .expect_err("message") (Result only - panics if Ok)
+let error: &str = result.panic_err_with("Expected an error");
 ```
 
-All methods work with both `Result<T, E>` and `Option<T>`.
+Most methods work with both `Result<T, E>` and `Option<T>`. The `*_err()` methods (`or_panic_err()`, `panic_err_with()`) are only available for `Result<T, E>` since `Option<T>` doesn't have an error variant.
 
 ## License
 
