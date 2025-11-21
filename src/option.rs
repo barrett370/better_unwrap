@@ -3,7 +3,7 @@ use std::default::Default;
 /// Trait that provides methods as alternatives to `unwrap()` and related methods for `Option<T>`.
 ///
 /// This trait allows you to use clearer method names like `.or_panic()` instead of `.unwrap()`.
-pub trait BEOption<T> {
+pub trait BUOption<T> {
     /// Unwraps an option, yielding the content of a `Some`.
     ///
     /// # Panics
@@ -13,7 +13,7 @@ pub trait BEOption<T> {
     /// # Examples
     ///
     /// ```should_panic
-    /// use better_unwrap::BEOption;
+    /// use better_unwrap::BUOption;
     ///
     /// let x: Option<u32> = None;
     /// x.or_panic(); // panics with `"called or_panic() on a None value"`
@@ -27,7 +27,7 @@ pub trait BEOption<T> {
     /// # Examples
     ///
     /// ```
-    /// use better_unwrap::BEOption;
+    /// use better_unwrap::BUOption;
     ///
     /// let y: Option<u32> = None;
     /// assert_eq!(y.panic_or(100), 100);
@@ -41,7 +41,7 @@ pub trait BEOption<T> {
     /// # Examples
     ///
     /// ```
-    /// use better_unwrap::BEOption;
+    /// use better_unwrap::BUOption;
     ///
     /// let y: Option<u32> = None;
     /// assert_eq!(y.panic_or_else(|| 100), 100);
@@ -57,7 +57,7 @@ pub trait BEOption<T> {
     /// # Examples
     ///
     /// ```
-    /// use better_unwrap::BEOption;
+    /// use better_unwrap::BUOption;
     ///
     /// let y: Option<String> = None;
     /// assert_eq!(y.panic_or_default(), String::new());
@@ -77,7 +77,7 @@ pub trait BEOption<T> {
     /// # Examples
     ///
     /// ```should_panic
-    /// use better_unwrap::BEOption;
+    /// use better_unwrap::BUOption;
     ///
     /// let x: Option<u32> = None;
     /// x.panic_with("Expected a value"); // panics with `"Expected a value"`
@@ -85,7 +85,7 @@ pub trait BEOption<T> {
     fn panic_with(self, msg: &str) -> T;
 }
 
-impl<T> BEOption<T> for Option<T> {
+impl<T> BUOption<T> for Option<T> {
     fn or_panic(self) -> T {
         match self {
             Some(value) => value,

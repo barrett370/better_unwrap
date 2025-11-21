@@ -4,7 +4,7 @@ use std::default::Default;
 /// Trait that provides methods as alternatives to `unwrap()` and related methods for `Result<T, E>`.
 ///
 /// This trait allows you to use clearer method names like `.or_panic()` instead of `.unwrap()`.
-pub trait BEResult<T, E> {
+pub trait BUResult<T, E> {
     /// Unwraps a result, yielding the content of an `Ok`.
     ///
     /// # Panics
@@ -14,7 +14,7 @@ pub trait BEResult<T, E> {
     /// # Examples
     ///
     /// ```should_panic
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Err("emergency failure");
     /// x.or_panic(); // panics with `"emergency failure"`
@@ -28,7 +28,7 @@ pub trait BEResult<T, E> {
     /// # Examples
     ///
     /// ```
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Err("error");
     /// assert_eq!(x.panic_or(42), 42);
@@ -42,7 +42,7 @@ pub trait BEResult<T, E> {
     /// # Examples
     ///
     /// ```
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Err("error");
     /// assert_eq!(x.panic_or_else(|err| {
@@ -61,7 +61,7 @@ pub trait BEResult<T, E> {
     /// # Examples
     ///
     /// ```
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Err("error");
     /// assert_eq!(x.panic_or_default(), 0);
@@ -81,7 +81,7 @@ pub trait BEResult<T, E> {
     /// # Examples
     ///
     /// ```should_panic
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Err("emergency failure");
     /// x.panic_with("Testing error handling"); // panics with `"Testing error handling"`
@@ -99,14 +99,14 @@ pub trait BEResult<T, E> {
     /// # Examples
     ///
     /// ```should_panic
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Ok(42);
     /// x.or_panic_err(); // panics with `"called or_panic_err() on an Ok value: 42"`
     /// ```
     ///
     /// ```
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Err("error message");
     /// let error = x.or_panic_err(); // returns "error message"
@@ -127,14 +127,14 @@ pub trait BEResult<T, E> {
     /// # Examples
     ///
     /// ```should_panic
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Ok(42);
     /// x.panic_err_with("Expected an error"); // panics with `"Expected an error"`
     /// ```
     ///
     /// ```
-    /// use better_unwrap::BEResult;
+    /// use better_unwrap::BUResult;
     ///
     /// let x: Result<u32, &str> = Err("error message");
     /// let error = x.panic_err_with("Should not panic"); // returns "error message"
@@ -143,7 +143,7 @@ pub trait BEResult<T, E> {
     fn panic_err_with(self, msg: &str) -> E;
 }
 
-impl<T, E: Debug> BEResult<T, E> for Result<T, E> {
+impl<T, E: Debug> BUResult<T, E> for Result<T, E> {
     fn or_panic(self) -> T {
         match self {
             Ok(value) => value,

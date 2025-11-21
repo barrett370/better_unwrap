@@ -1,8 +1,8 @@
 pub mod option;
 pub mod result;
 
-pub use option::BEOption;
-pub use result::BEResult;
+pub use option::BUOption;
+pub use result::BUResult;
 
 /// A prelude for conveniently importing the traits.
 ///
@@ -40,7 +40,7 @@ pub use result::BEResult;
 /// let error2 = err_result4.panic_err_with("Expected an error");
 /// ```
 pub mod prelude {
-    pub use crate::{BEOption, BEResult};
+    pub use crate::{BUOption, BUResult};
 }
 
 #[cfg(test)]
