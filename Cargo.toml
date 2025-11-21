@@ -1,6 +1,6 @@
 [package]
 name = "better_unwrap"
-version = "0.2.0"
+version = "1.0.0"
 edition = "2024"
 authors = ["Sam Barrett <barrett370@gmail.com>"]
 description = "A trait providing clearer alternatives to unwrap() methods: or_panic(), panic_or(), panic_or_else(), panic_or_default(), and panic_with()"
